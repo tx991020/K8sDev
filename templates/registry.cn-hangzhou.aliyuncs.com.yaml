@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5jbi1oYW5nemhvdS5hbGl5dW5jcy5jb20iOnsidXNlcm5hbWUiOiJsdW9mZW5nQGd1YW5naGUiLCJwYXNzd29yZCI6Illhbmdjb25nLTM0NSIsImVtYWlsIjoiMTA1OTYyMjMzMkBxcS5jb20iLCJhdXRoIjoiYkhWdlptVnVaMEJuZFdGdVoyaGxPbGxoYm1kamIyNW5MVE0wTlE9PSJ9fX0=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: registry.cn-hangzhou.aliyuncs.com
+type: kubernetes.io/dockerconfigjson

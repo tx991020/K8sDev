@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{.name}}
+  namespace: {{.namespace}}
+  labels:
+    app: {{.name}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{.name}}
+  template:
+    metadata:
+      labels:
+        app: {{.name}}
+    spec:
+      containers:
+        - image: registry.cn-hangzhou.aliyuncs.com/guanghe/{{.name}}:latest
+          name: {{.name}}
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: TRIGGER_K8S_ROLLOUT
+              value: "1"
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - mountPath: /project/config
+              name: {{.name}}-configs
+              readOnly: true
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "10m"
+            limits:
+              memory: "1024Mi"
+              cpu: "2000m"
+          livenessProbe:
+            initialDelaySeconds: 60
+            periodSeconds: 5
+            tcpSocket:
+              port: http
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            tcpSocket:
+              port: http
+      imagePullSecrets:
+        - name: registry.cn-hangzhou.aliyuncs.com
+      volumes:
+        - name: {{.name}}-configs
+          configMap:
+            name: {{.name}}-configs

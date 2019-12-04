@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{.name}}-configs
+  namespace: {{.namespace}}
+data:
+  #配置示范
+  conf.toml: |
+    ervice_name = "logic"
+    # 模式，可选值：prod, dev。生产环境请设置为prod
+    mode = "dev"
+    address = "0.0.0.0:80"
+    # 生成jwt token的密钥
+    secret = "o#lGKP*3$yU*Nr!7TMWGag4jUXx!2F^*"
+  dbconfig.yml: |
+    production:
+      dialect: mysql
+      datasource: pipatesting:pipatesting@tcp(mariadb:3306)/logic?charset=utf8mb4&parseTime=true&loc=Local
+      dir: migrations

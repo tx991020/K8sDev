@@ -1,0 +1,23 @@
+db:
+  user: postgres
+  database: study-b
+  password: 7to12pg94
+  host: 10.8.8.120
+  port: 5432
+  max_idle_conn: 100
+  max_open_conn: 100
+  idleTimeoutMillis: 30000
+
+redis:
+  host: 10.8.8.118
+  port: 6379
+  maxidle: 3
+  maxactive: 660
+  idle_timeout: 180
+  db: 15
+  password: Yangcong345
+  redis_key_lifespan: 120
+  cache_purge_interval: 120
+  lifespan: 60
+
+logLevel: debug
